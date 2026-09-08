@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* .give-you-glory-regular {
+  font-family: "Give You Glory", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+  for the use in fonts */
+
+
+body{
+     font-family: "Give You Glory", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: wheat;
+
+}
