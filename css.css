@@ -1,20 +1,197 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* Prevents padding from breaking sizing layout */
 }
 
-/* .give-you-glory-regular {
-  font-family: "Give You Glory", cursive;
-  font-weight: 400;
-  font-style: normal;
+body {
+    font-family: "Give You Glory", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: wheat;
+    /* Clean fall-back radial gradient background */
+    background: radial-gradient(
+        circle at center,
+        rgba(139, 90, 43, 1) 0%,     
+        rgba(92, 54, 27, 1) 65%,   
+        rgba(61, 35, 20, 1) 100% 
+    );
+    overflow: hidden; /* Stops scrolling bars during fruit slashing */
 }
-  for the use in fonts */
 
+/*
+   CORE SCREEN & OVERLAY SYSTEM
+*/
+.screen {
+    width: 100vw;
+    height: 100vh;
+    position: fixed; /* Overlays perfectly on top of one another */
+    top: 0;
+    left: 0;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+}
 
-body{
-     font-family: "Give You Glory", cursive;
-  font-weight: 400;
-  font-style: normal;
-  color: wheat;
+/* 1. Start Screen Styling */
+#startScreen {
+    background: url(abstract-background-design_1117-139.avif), 
+                radial-gradient(circle at center, rgba(139, 90, 43, 1) 0%, rgba(61, 35, 20, 1) 100%);
+    background-size: cover;
+    background-position: center;
+}
 
+#startScreen h1 {
+    font-size: clamp(45px, 8vw, 90px);
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#startScreen p {
+    font-size: 20px;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+/* 2. Active Gameplay Screen Container */
+#gameplayScreen {
+    background: radial-gradient(
+        circle at center, 
+        rgba(122, 61, 22, 1) 0%, 
+        rgba(74, 35, 12, 1) 45%, 
+        rgba(33, 15, 5, 1) 85%, 
+        rgba(15, 7, 2, 1) 100%
+    );
+}
+
+/* The Canvas handles pixel drawing */
+#game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+    z-index: 1; /* Sits underneath the HUD overlay */
+}
+
+/* Live HUD overlay positioning */
+#hud {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5; /* Forces score to layer cleanly on top of the moving fruits */
+    font-size: 24px;
+}
+
+#score {
+    min-width: 120px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    color: #ffd200;
+}
+
+/* 3. Game Over Screen Overlay styling */
+#gameOverScreen {
+    background: radial-gradient(circle at center, #4b1625, #111 70%);
+    z-index: 20; /* Sits over everything else when game triggers death */
+}
+
+#gameOverScreen h1 {
+    font-size: clamp(45px, 8vw, 80px);
+    margin-bottom: 20px;
+    color: #ff4b5c;
+    text-shadow: 0 0 15px rgba(255, 75, 92, 0.7);
+}
+
+#gameOverScreen p {
+    font-size: 20px;
+    color: #ddd;
+    margin: 8px;
+}
+
+#gameOverScreen h2 {
+    font-size: 60px;
+    margin: 10px 0 25px;
+    color: #ffd200;
+}
+
+/* ================================
+   GLOBAL WOODEN BUTTON COMPONENT
+================================ */
+button {
+    background: linear-gradient(#a05a2c, #5c3214);
+    color: #fffdd0; 
+    font-family: 'Give You Glory', cursive;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 12px 35px;
+    border-radius: 20px;
+    
+    /* Bevel Shading for visual 3D Plank Effect */
+    border-top: 4px solid #d4844d;    
+    border-bottom: 6px solid #2e190a; 
+    border-left: 3px solid #7d441e;
+    border-right: 3px solid #42230d;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.6);
+    
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+}
+
+button:active {
+    transform: translateY(3px);
+    border-bottom-width: 3px; 
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* ================================
+   HIDDEN CONTROL CLASS
+================================ */
+.hidden {
+    display: none !important;
+}
+/* 
+mobile responseivness */
+@media (max-width: 600px) {
+    #hud {
+        top: 10px;
+        font-size: 18px;
+    }
+
+    #score {
+        padding: 6px 15px;
+        border-radius: 10px;
+    }
+
+    #startScreen p {
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 25px;
+        font-size: 18px;
+    }
+}
+
+@media (max-height: 600px) {
+    #startScreen h1 {
+        font-size: 45px;
+    }
 }

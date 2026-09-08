@@ -6,38 +6,44 @@
     <title>FRUIT NINJA KA BHAI FRUIT GANJA</title>
     <link rel="stylesheet" href="css.css">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Give+You+Glory&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Give+You+Glory&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="start" class="screen"> WELCOME TO FRUIT GANJA
-        <p>cut fruits! avoid bomb!!!</p>
-        <p>YOU HAVE ONLY ONE LIVE !!!</p>
-        <button id="start">LETSS GOO!!!!</button>
+
+    <!-- 1. Start / Main Menu Screen -->
+    <div id="startScreen" class="screen  "> 
+        <h1>WELCOME TO BANKAI FRUIT</h1>
+        <p>Cut fruits! Avoid bombs!!!</p>
+        <p>YOU HAVE ONLY ONE LIFE !!!</p>
+        <button id="startButton">LETSS GOO!!!!</button>
     </div>
 
-    <div id="permanent" class="screen">
-        <strong id="score">0</strong> <!-- //SCRipt se badhega -->
-    
+    <!-- 2. Main Gameplay Screen -->
+     <!-- eksath do class assign kr rhe  -->
+    <div id="gameplayScreen" class="screen hidden ">
+        <!-- Live HUD elements sit here -->
+        <div id="hud">
+            <span>SCORE: </span><strong id="score">0</strong>
+        </div>
+        
+        <!-- The Main Gameplay Canvas -->
+        <canvas id="game"></canvas>
+    </div>
 
-    <canvas id="game"></canvas>
-    <!-- script ke liye use hota h espe hum draw vaigaira kr sakte h  -->
-
-   
+    <!-- 3. Game Over Screen Overlay -->
     <div id="gameOverScreen" class="screen hidden">
-
         <h1>GAME OVER</h1>
-
         <p>Your Score</p>
         <h2 id="finalScore">0</h2>
-
         <p>🏆 Best Score: <span id="highScore">0</span></p>
-
         <button id="restartButton">PLAY AGAIN</button>
-
     </div>
-</div>
+
+    <!-- Add your script file right here before the body ends -->
+    <!-- <script src="script.js"></script> -->
+
 </body>
 </html>
